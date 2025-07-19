@@ -1,0 +1,30 @@
+{
+  "name": "part13_relational_database",
+  "version": "1.0.0",
+  "description": "A blog app built using PostgreSQL",
+  "homepage": "https://github.com/ajay26188/Relational_Database_Blog_Application#readme",
+  "bugs": {
+    "url": "https://github.com/ajay26188/Relational_Database_Blog_Application/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajay26188/Relational_Database_Blog_Application.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.3",
+    "sequelize": "^6.37.7"
+  }
+}
