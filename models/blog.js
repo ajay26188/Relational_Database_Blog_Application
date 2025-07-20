@@ -18,7 +18,7 @@ Blog.init({
     allowNull: false
   },
   title: {
-    type: DataTypes.DATE,
+    type: DataTypes.TEXT,
     allowNull: false
   },
   likes: {
