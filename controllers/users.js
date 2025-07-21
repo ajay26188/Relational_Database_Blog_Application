@@ -1,7 +1,6 @@
 const router = require('express').Router()
 
 const { User, Blog } = require('../models')
-const { errorHandler } = require('../util/middleware')
 
 router.get('/', async (req, res) => {
   const users = await User.findAll({
