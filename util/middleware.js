@@ -20,10 +20,10 @@ const errorHandler = (error, request, response, next) => {
     }
 
     if (error.name === 'SequelizeValidationError') {
-        return response.status(400).json({ error: error.message })
+        return response.status(400).json({ error: error.errors[0].message })
     }
     
-      if (error.name === 'SequelizeDatabaseError') {
+    if (error.name === 'SequelizeDatabaseError') {
         return response.status(400).json({ error: error.message })
     }
   
