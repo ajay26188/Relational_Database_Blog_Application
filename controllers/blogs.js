@@ -30,6 +30,7 @@ router.delete('/:id', tokenExtractor, blogFinder,  async (req, res) => {
         await req.blog.destroy()
         res.status(204).end()
     }
+    return res.status(403).json({ error: 'unauthorized: cannot delete this blog' })
 })
   
 router.put('/:id', blogFinder, async (req, res) => {
