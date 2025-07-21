@@ -1,4 +1,7 @@
+const jwt = require('jsonwebtoken')
+
 const { Blog } = require('../models')
+const { SECRET } = require('./config')
 
 const blogFinder = async (req, res, next) => {
     const blog = await Blog.findByPk(req.params.id)
@@ -15,8 +18,12 @@ const tokenExtractor = (req, res, next) => {
     const authorization = req.get('authorization')
     if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
       try {
+        console.log('Auth header:', authorization)
+        console.log('Token:', authorization.substring(7))
         req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
-      } catch{
+        
+      } catch(error){
+        console.error('JWT VERIFY ERROR:', error.message)
         return res.status(401).json({ error: 'token invalid' })
       }
     }  else {
