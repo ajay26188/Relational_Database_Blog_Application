@@ -17,18 +17,27 @@ router.get('/:id', async (req, res) => {
       attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } ,
       include:[
         {
-          model: Blog,
-          as: 'readings',
-          attributes: { exclude: ['userId','createdAt', 'updatedAt']},
-          through: {
-            attributes: []
-          }
+            model: Blog,
+            as: 'readings',
+            attributes: { exclude: ['userId','createdAt', 'updatedAt']},
+            through: {
+                attributes: ['readStatus', 'id']
+            },
         },
       ]
     })
   
     if (user) {
-      res.json(user)
+        const result = user.toJSON()
+
+        result.readings = result.readings.map(blog => {
+          blog.readinglists = blog.user_blogs
+          delete blog.user_blogs
+          return blog
+        })
+        
+        res.json(result)
+        
     } else {
       res.status(404).end()
     }
