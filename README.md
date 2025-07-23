@@ -1,12 +1,13 @@
 📝 Relational Database Blog Application
+
 A blog application using Node.js, Express, Sequelize, and PostgreSQL — containerized with Docker Compose.
 
-🚀 Getting Started
 📦 Installation
+
 bash
-Copy code
+
 npm install
-▶️ Running the App
+
 Start the development server:
 
 bash
