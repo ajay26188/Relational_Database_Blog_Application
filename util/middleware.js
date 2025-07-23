@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const { Blog } = require('../models')
+const { Blog, SessionStorage } = require('../models')
 const { SECRET } = require('./config')
 
 const blogFinder = async (req, res, next) => {
@@ -14,13 +14,25 @@ const blogFinder = async (req, res, next) => {
     next()
 } 
 
-const tokenExtractor = (req, res, next) => {
+const tokenExtractor = async (req, res, next) => {
     const authorization = req.get('authorization')
     if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
       try {
-        console.log('Auth header:', authorization)
-        console.log('Token:', authorization.substring(7))
+        console.log(authorization.substring(7))
         req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
+
+        const session = await SessionStorage.findOne({
+          where: {
+            token: authorization.substring(7),
+            isValid: true,
+          },
+        })
+    
+        if (!session) {
+          return res.status(401).json({ error: 'session expired or invalid' })
+        }
+
+        req.session = session
         
       } catch(error){
         console.error('JWT VERIFY ERROR:', error.message)
