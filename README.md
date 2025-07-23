@@ -1,6 +1,6 @@
 # 📝 Relational Database Blog Application
 
-A full-stack blog application using **Node.js**, **Express**, **Sequelize**, and **PostgreSQL** — containerized with **Docker Compose**.
+A blog application using **Node.js**, **Express**, **Sequelize**, and **PostgreSQL** — containerized with **Docker Compose**.
 
 ---
 
